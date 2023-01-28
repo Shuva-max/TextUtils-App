@@ -88,16 +88,27 @@ export default function TextForm(props) {
       {/* For text Summery */}
       <div className="container my-3" style={{color:`${props.mode === 'light'?'black':'#69C869'}`}}>
         <h2>Your text summery</h2>
-        <p>
-          {text.split(" ").length} words and {text.length}charactors{" "}
-        </p>
+        <h6>
+          {wordCounter(text)} words and {text.length} charactors{" "}
+        </h6>
       </div>
     </React.Fragment>
   );
 }
 
-// function wordCounter(str){
-//   if(str === ""){
-//     return 0;
-//   }else
-// }
+function wordCounter(str){
+  let str1 = str.split(/[ ]+/);
+  str = str1.join(" ");
+  let str2 = str.split(/[ ]+/);
+
+  if(str.length === 0){
+    return 0;
+  } else if (str.length > 0 && (!str.endsWith(" ")) && (str2.length >= 1)){
+    return (str2.length === 1 ? 1 : str.split(" ").length);
+  }else {
+    if (str.startsWith(" ")){
+      return (str.split(" ").length-2);
+    }
+    return (str.split(" ").length-1);
+  }
+}
