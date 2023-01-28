@@ -5,19 +5,19 @@ export default function Navbar(props) {
   return (
     <nav id ="nav123" className={`navbar navbar-expand-lg bg-${props.mode ==='light'?'success':'dark'} navber-${props.mode}`}>
       <div className="container-fluid">
-        <a className={`navbar-brand text-${props.mode ==='light'?'dark':'light'}`} href="/">
+        <a className={`navbar-brand text-${props.mode ==='light'?'dark':'light'}`} href="#">
           <strong>{props.title}</strong>
         </a>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className={`nav-link active text-${props.mode ==='light'?'dark':'light'}`} aria-current="page" href="/">
+              <a className={`nav-link active text-${props.mode ==='light'?'dark':'light'}`} aria-current="page" href="#">
                 Home
               </a>
             </li>
             <li className="nav-item">
-              <a className={`nav-link active text-${props.mode ==='light'?'dark':'light'}`} href="/">
+              <a className={`nav-link active text-${props.mode ==='light'?'dark':'light'}`} href="#">
                 {props.aboutText}
               </a>
             </li>
