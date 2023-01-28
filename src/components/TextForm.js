@@ -7,10 +7,12 @@ export default function TextForm(props) {
   const handleUpClick = () => {
     let upText = text.toUpperCase();
     setText(upText);
+    props.showAlert("Converted into UpperCase","success: ")
   };
   const handleLowClick = () => {
     let lowText = text.toLowerCase();
     setText(lowText);
+    props.showAlert("Converted into Lowercase","success: ")
   };
   const handleOnChange = (event) => {
     setText(event.target.value);
@@ -22,6 +24,8 @@ export default function TextForm(props) {
     copyText.select();
     /* Copy the text inside the text field */
     navigator.clipboard.writeText(copyText.value);
+    // for showing alert massage
+    props.showAlert("Copied into clipboard","success: ")
   };
   const clearSpaces = () => {
     let netText = text.split(/[ ]+/);
@@ -33,7 +37,7 @@ export default function TextForm(props) {
   return (
     <React.Fragment>
       <div className="container">
-        <h1 style={{color:`${props.mode === 'light'?'black':'#69C869'}`}}>{props.heading}</h1>
+        <h1 style={{color:`${props.mode === 'light'?'black':'#96FF9B'}`}}>{props.heading}</h1>
         <div className="mb-3">
           <textarea
             style={props.myStyle}
@@ -86,16 +90,17 @@ export default function TextForm(props) {
       </div>
 
       {/* For text Summery */}
-      <div className="container my-3" style={{color:`${props.mode === 'light'?'black':'#69C869'}`}}>
+      <div className="container my-3" style={{color:`${props.mode === 'light'?'black':'#96FF9B'}`}}>
         <h2>Your text summery</h2>
         <h6>
-          {wordCounter(text)} words and {text.length} charactors{" "}
+          {wordCounter(text)} words and {text.length} characters{" "}
         </h6>
       </div>
     </React.Fragment>
   );
 }
 
+//wordCounter function
 function wordCounter(str){
   let str1 = str.split(/[ ]+/);
   str = str1.join(" ");

@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 
 export default function Navbar(props) {
   return (
-    <nav className={`navbar navbar-expand-lg bg-${props.mode ==='light'?'success':'dark'} navber-${props.mode}`}>
+    <nav id ="nav123" className={`navbar navbar-expand-lg bg-${props.mode ==='light'?'success':'dark'} navber-${props.mode}`}>
       <div className="container-fluid">
         <a className={`navbar-brand text-${props.mode ==='light'?'dark':'light'}`} href="/">
-          {props.title}
+          <strong>{props.title}</strong>
         </a>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
