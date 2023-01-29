@@ -7,16 +7,19 @@ export default function TextForm(props) {
   const handleUpClick = () => {
     let upText = text.toUpperCase();
     setText(upText);
-    props.showAlert("Converted into UpperCase","success: ")
+    showMassage("Converted into UpperCase","success: ")
   };
   const handleLowClick = () => {
     let lowText = text.toLowerCase();
     setText(lowText);
-    props.showAlert("Converted into Lowercase","success: ")
+    showMassage("Converted into Lowercase","success: ")
   };
+
+  // to write in our textfield area 
   const handleOnChange = (event) => {
     setText(event.target.value);
   };
+
   const handleCopy = () => {
     let copyText = document.getElementById("exampleFormControlTextarea1");
 
@@ -25,12 +28,20 @@ export default function TextForm(props) {
     /* Copy the text inside the text field */
     navigator.clipboard.writeText(copyText.value);
     // for showing alert massage
-    props.showAlert("Copied into clipboard","success: ")
+    showMassage("Copied into clipboard","success: ")
   };
   const clearSpaces = () => {
     let netText = text.split(/[ ]+/);
     setText(netText.join(" "));
   };
+
+  const showMassage = (massage,type)=> {
+    if(text === ""){
+      props.showAlert("Please enter your text below!!","warning: ");
+    }else{
+      props.showAlert(massage,type);
+    }
+  }
 
   const [text, setText] = useState("");
 
