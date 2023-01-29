@@ -19,7 +19,8 @@ function App() {
       });
       document.body.style.backgroundColor = '#c1eab5' ;
       showAlert("LightMode enable successfully","success: ");
-      document.title = "TextUtils - Home" ;
+      // for app title changing dynamically 
+      document.title = "TextUtils" ;
     }else{
       setMode('dark');
       setMyStyle({
@@ -28,6 +29,7 @@ function App() {
       });
       document.body.style.backgroundColor = '#011504';
       showAlert("DarkMode enable successfully","success: ");
+      // for app title changing dynamically 
       document.title = "TextUtils - DarkMode" ;
     }
   };

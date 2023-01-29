@@ -3,6 +3,7 @@ import React, { useState } from "react";
 export default function TextForm(props) {
   const handleReset = () => {
     setText("");
+    showMassage("Reset successfully","success: ")
   };
   const handleUpClick = () => {
     let upText = text.toUpperCase();
@@ -21,6 +22,9 @@ export default function TextForm(props) {
   };
 
   const handleCopy = () => {
+    if(text.length === 0){
+      props.showAlert("Please enter your text below!!","warning: ");
+    } else{
     let copyText = document.getElementById("exampleFormControlTextarea1");
 
     /* Select the text field */
@@ -28,7 +32,8 @@ export default function TextForm(props) {
     /* Copy the text inside the text field */
     navigator.clipboard.writeText(copyText.value);
     // for showing alert massage
-    showMassage("Copied into clipboard","success: ")
+    showMassage("Copied into clipboard","success: ");
+    }
   };
   const clearSpaces = () => {
     let netText = text.split(/[ ]+/);
@@ -36,7 +41,7 @@ export default function TextForm(props) {
   };
 
   const showMassage = (massage,type)=> {
-    if(text === ""){
+    if(text.length === 0){
       props.showAlert("Please enter your text below!!","warning: ");
     }else{
       props.showAlert(massage,type);
