@@ -40,11 +40,11 @@ function App() {
   const showAlert = (massage, type) => {
     setAlert({
       msg: massage,
-      type: type,
+      type: type
     });
     setTimeout(() => {
       setAlert(null);
-    }, 1850);
+    }, 1550);
   };
 
   return (
@@ -60,7 +60,7 @@ function App() {
 
       {/* Textfield component */}
       <div className="container my-1">
-        <TextForm heading="TextUtils - Word Counter, Character Counter" mode={mode} myStyle={myStyle} showAlert={showAlert}/>
+        <TextForm heading="TextUtils - Word Counter, Character Counter, Remove extra spaces" mode={mode} myStyle={myStyle} showAlert={showAlert}/>
       </div>
     </React.Fragment>
   );

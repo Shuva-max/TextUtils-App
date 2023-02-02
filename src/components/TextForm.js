@@ -63,7 +63,7 @@ export default function TextForm(props) {
           <textarea
             style={props.myStyle}
             className="form-control"
-            placeholder={text.length > 0 ? text : "Enter your text"}
+            placeholder={text.length > 0 ? "" : "Word Counter, Character Counter, uppercase to Lowercase, Lowercase to Uppercase"}
             value={text}
             onChange={handleOnChange}
             id="exampleFormControlTextarea1"

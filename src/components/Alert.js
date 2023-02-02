@@ -8,7 +8,7 @@ export default function Alert(props) {
     
 
   return (
-    <div style={{height:'3.25em',weight:'3.2em'}}> 
+    <div style={{height:'3.7em'}}> 
       {props.alert && <div className={`alert alert-${props.alert.type === 'success: '?'success':'warning'} d-flex align-items-center`} role="alert">
       <svg className="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"></svg>
       <div>
