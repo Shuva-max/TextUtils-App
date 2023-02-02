@@ -5,7 +5,7 @@ export default function Navbar(props) {
   return (
     <nav className={`navbar navbar-expand-lg navbar-${props.mode === "light"?'success':"#44B407"} bg-${props.mode === "light"?'success':"dark"}`}>
       <div className={`container-fluid text-${props.mode === 'light'?"black":'light'}`}>
-        <a className={`navbar-brand text-${props.mode === 'light'?'black':'white'}`} href="#">
+        <a className={`navbar-brand text-${props.mode === 'light'?'black':'white'}`} href="/">
           {props.title}
         </a>
         <button
@@ -22,12 +22,12 @@ export default function Navbar(props) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className={`nav-link active text-${props.mode === 'light'?'black':'white'}`} aria-current="page" href="#">
+              <a className={`nav-link active text-${props.mode === 'light'?'black':'white'}`} aria-current="page" href="/">
                 Home
               </a>
             </li>
             <li className="nav-item">
-              <a className={`nav-link active text-${props.mode === 'light'?'black':'white'}`} aria-current="page" href="#">
+              <a className={`nav-link active text-${props.mode === 'light'?'black':'white'}`} aria-current="page" href="/">
                 {props.aboutText}
               </a>
             </li>
@@ -45,19 +45,6 @@ export default function Navbar(props) {
               Enable {props.mode === 'light'?"DarkMode":"LightMode"}
             </label>
           </div>
-
-        {/*  Search section*/}
-          <form className="d-flex">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className={`btn btn-${props.mode === 'light'?'light':'success'}`} type="submit">
-              Search
-            </button>
-          </form>
         </div>
       </div>
     </nav>

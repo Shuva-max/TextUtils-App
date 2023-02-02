@@ -3,36 +3,36 @@ import React, { useState } from "react";
 export default function TextForm(props) {
   const handleReset = () => {
     setText("");
-    showMassage("Reset successfully","success: ")
+    showMassage("Reset successfully", "success: ");
   };
   const handleUpClick = () => {
     let upText = text.toUpperCase();
     setText(upText);
-    showMassage("Converted into UpperCase","success: ")
+    showMassage("Converted into UpperCase", "success: ");
   };
   const handleLowClick = () => {
     let lowText = text.toLowerCase();
     setText(lowText);
-    showMassage("Converted into Lowercase","success: ")
+    showMassage("Converted into Lowercase", "success: ");
   };
 
-  // to write in our textfield area 
+  // to write in our textfield area
   const handleOnChange = (event) => {
     setText(event.target.value);
   };
 
   const handleCopy = () => {
-    if(text.length === 0){
-      props.showAlert("Please enter your text below!!","warning: ");
-    } else{
-    let copyText = document.getElementById("exampleFormControlTextarea1");
+    if (text.length === 0) {
+      props.showAlert("Please enter your text below!!", "warning: ");
+    } else {
+      let copyText = document.getElementById("exampleFormControlTextarea1");
 
-    /* Select the text field */
-    copyText.select();
-    /* Copy the text inside the text field */
-    navigator.clipboard.writeText(copyText.value);
-    // for showing alert massage
-    showMassage("Copied into clipboard","success: ");
+      /* Select the text field */
+      // copyText.select();
+      /* Copy the text inside the text field */
+      navigator.clipboard.writeText(copyText.value);
+      // for showing alert massage
+      showMassage("Copied into clipboard", "success: ");
     }
   };
   const clearSpaces = () => {
@@ -40,33 +40,39 @@ export default function TextForm(props) {
     setText(netText.join(" "));
   };
 
-  const showMassage = (massage,type)=> {
-    if(text.length === 0){
-      props.showAlert("Please enter your text below!!","warning: ");
-    }else{
-      props.showAlert(massage,type);
+  const showMassage = (massage, type) => {
+    if (text.length === 0) {
+      props.showAlert("Please enter your text below!!", "warning: ");
+    } else {
+      props.showAlert(massage, type);
     }
-  }
+  };
 
   const [text, setText] = useState("");
 
   return (
     <React.Fragment>
       <div className="container">
-        <h1 style={{color:`${props.mode === 'light'?'black':'#96FF9B'}`}}>{props.heading}</h1>
+        <div
+          style={{ color: `${props.mode === "light" ? "black" : "#96FF9B"}` }}
+        >
+          <h1 className="mb-4 my-2">{props.heading}</h1>
+        </div>
+
         <div className="mb-3">
           <textarea
             style={props.myStyle}
             className="form-control"
             placeholder={text.length > 0 ? text : "Enter your text"}
-            value={text}    
-            onChange={handleOnChange} 
+            value={text}
+            onChange={handleOnChange}
             id="exampleFormControlTextarea1"
             rows="9"
           ></textarea>
         </div>
 
         <button
+          disabled={characterCounter(text) === 0}
           type="button"
           className="btn btn-outline-success mx-1 my-1"
           onClick={handleUpClick}
@@ -74,6 +80,7 @@ export default function TextForm(props) {
           Convert to Uppercase
         </button>
         <button
+          disabled={characterCounter(text) === 0}
           type="button"
           className="btn btn-outline-success mx-1 my-1"
           onClick={handleLowClick}
@@ -81,6 +88,7 @@ export default function TextForm(props) {
           Convert to Lowercase
         </button>
         <button
+          disabled={characterCounter(text) === 0}
           type="button"
           className="btn btn-outline-success mx-1 my-1"
           onClick={clearSpaces}
@@ -89,6 +97,7 @@ export default function TextForm(props) {
         </button>
 
         <button
+          disabled={characterCounter(text) === 0}
           type="button"
           className="btn btn-outline-success mx-1 my-1"
           onClick={handleCopy}
@@ -106,10 +115,13 @@ export default function TextForm(props) {
       </div>
 
       {/* For text Summery */}
-      <div className="container my-3" style={{color:`${props.mode === 'light'?'black':'#96FF9B'}`}}>
+      <div
+        className="container my-3"
+        style={{ color: `${props.mode === "light" ? "black" : "#96FF9B"}` }}
+      >
         <h2>Your text summery</h2>
         <h6>
-          {wordCounter(text)} words and {text.length} characters{" "}
+          {wordCounter(text)} words and {characterCounter(text)} characters
         </h6>
       </div>
     </React.Fragment>
@@ -117,19 +129,14 @@ export default function TextForm(props) {
 }
 
 //wordCounter function
-function wordCounter(str){
-  let str1 = str.split(/[ ]+/);
-  str = str1.join(" ");
-  let str2 = str.split(/[ ]+/);
-
-  if(str.length === 0){
-    return 0;
-  } else if (str.length > 0 && (!str.endsWith(" ")) && (str2.length >= 1)){
-    return (str2.length === 1 ? 1 : str.split(" ").length);
-  }else {
-    if (str.startsWith(" ")){
-      return (str.split(" ").length-2);
-    }
-    return (str.split(" ").length-1);
-  }
+function wordCounter(str) {
+  return str.split(/\s+/).filter((ele) => {
+    return ele.length !== 0;
+  }).length;
+}
+//characterCounter function
+function characterCounter(str) {
+  let char = str.split(/\s+/);
+  let result = char.join("").length;
+  return result;
 }
